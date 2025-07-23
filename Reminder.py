@@ -4,8 +4,9 @@ from tkinter import simpledialog as sd
 import  datetime
 import time
 import pygame
-t = 0
 
+t = 0
+music = False
 
 def set():
     global t
@@ -35,9 +36,19 @@ def chek():
 
 
 def play_snd():
+    global music
+    music = True
     pygame.mixer.init()
     pygame.mixer.music.load('reminder.mp3')
     pygame.mixer.music.play()
+
+
+def stop_snd():
+    global music
+    if music:
+        pygame.mixer.music.stop()
+    music = False
+    label.config(text='Новое напоминание')
 
 
 window = Tk()
@@ -46,6 +57,8 @@ label = Label(text="Введите время напоминания", font='Ari
 label.pack(pady=10)
 set_button = Button(text="Установить напоминание", command=set)
 set_button.pack(pady=10)
+stop_button = Button(text='Выключить музыку', command=stop_snd)
+stop_button.pack(pady=10)
 
 chek()
 
