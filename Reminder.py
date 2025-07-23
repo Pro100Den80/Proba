@@ -16,7 +16,7 @@ def set():
             mnt = int(rem.split (":")[1])
             now = datetime.datetime.now()
             print(now)
-            dt = now.replace(hour=hour, minute=mnt)
+            dt = now.replace(hour=hour, minute=mnt, second=0)
             print(dt)
             t = dt.timestamp()
             print(t)
@@ -42,9 +42,11 @@ def play_snd():
 
 window = Tk()
 window.title("Напоминание")
-label = Label(text="Введите время напоминания")
+label = Label(text="Введите время напоминания", font='Arial 15')
 label.pack(pady=10)
 set_button = Button(text="Установить напоминание", command=set)
 set_button.pack(pady=10)
+
+chek()
 
 window.mainloop()
