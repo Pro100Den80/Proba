@@ -18,6 +18,7 @@ def set():
             now = datetime.datetime.now()
             print(now)
             dt = now.replace(hour=hour, minute=mnt, second=0)
+            label.config(text=f'Установлено напоминание на {hour:02}:{mnt:02}')
             print(dt)
             t = dt.timestamp()
             print(t)
