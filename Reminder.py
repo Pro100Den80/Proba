@@ -34,6 +34,11 @@ def chek():
     window.after(10000, chek)
 
 
+def play_snd():
+    pygame.mixer.init()
+    pygame.mixer.music.load('reminder.mp3')
+    pygame.mixer.music.play()
+
 
 window = Tk()
 window.title("Напоминание")
