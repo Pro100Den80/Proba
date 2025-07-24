@@ -16,13 +16,15 @@ def set():
             hour = int(rem.split (":")[0])
             mnt = int(rem.split (":")[1])
             now = datetime.datetime.now()
-            print(now)
             dt = now.replace(hour=hour, minute=mnt, second=0)
             text = sd.askstring("Текст напоминания","Введите текст напоминания")
-            label.config(text=f' Напоминание на {hour:02}:{mnt:02}, {text}')
-            print(dt)
+            label.config(text=f' Напоминание на {hour:02}:{mnt:02} {text}')
+
             t = dt.timestamp()
-            print(t)
+
+        except ValueError:
+            if hour > 23 or mnt > 59:
+                mb.showerror('Ошибка', 'Неверный формат времени')
         except Exception as e:
             mb.showerror("Ошибка",f"Произошла ошибка{e}")
 
@@ -55,11 +57,13 @@ def stop_snd():
 
 window = Tk()
 window.title("Напоминание")
-label = Label(text="Введите время напоминания", font='Arial 15')
+window.geometry('300x160+300+300')
+window.config(bg="Lime")
+label = Label(text="Введите время напоминания", font='Arial 15 bold', bg='Lime',fg='Brown')
 label.pack(pady=10)
-set_button = Button(text="Установить напоминание", command=set)
+set_button = Button(bg="Brown", fg="white", text="Установить напоминание", command=set)
 set_button.pack(pady=10)
-stop_button = Button(text='Выключить музыку', command=stop_snd)
+stop_button = Button(fg='Brown',text='Выключить музыку', command=stop_snd)
 stop_button.pack(pady=10)
 
 chek()
